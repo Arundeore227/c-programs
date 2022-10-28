@@ -1,6 +1,7 @@
 #include"24.stack.h"
 int main()
 {
+	//varible declaration
 	int option, status, data;
 	char ch;
 	S_array s;
