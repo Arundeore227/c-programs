@@ -1,21 +1,22 @@
 #include<stdio.h>
 #include<stdlib.h>
-typedef int data_t;
+typedef int data_t;   //allicing for readability
 
 
-#define SUCCESS 1
+#define SUCCESS 1   //macros
 
-typedef struct node{
+typedef struct node{    //self ref structure of node for creating SLL
 	data_t data;
 	struct node *link;	
-}Slist;
+}Slist;  //alising readabilty simplisity
 
-void print_list(Slist *head);
-int insert_at_last(Slist **head, data_t data);
-Slist *find_mth_node_from_the_last(Slist*, int, int*);
+void print_list(Slist *head);   //function declaration
+int insert_at_last(Slist **head, data_t data);   //function declaration
+Slist *find_mth_node_from_the_last(Slist*, int, int*); //function declaration
 
 int main()
 {
+	//variable declaration
 	int data, option, status;
 	char ch;
 	int n, res;
@@ -24,16 +25,16 @@ int main()
 	do{
 		printf("1-insert in last\n2-find mth last\n 3-Print List\n");
 		scanf("%d", &option);
-		switch(option)
+		switch(option)                                                //switch case
 		{
 			case 1: printf("ENter the data you want to insert i SLL\n");
 				scanf("%d", &data);
-				status = insert_at_last(&head, data);
+				status = insert_at_last(&head, data);     //calling fun insert_at_last and printing address of head and data as AP
 				status == SUCCESS? printf("DATA INSERTED SUCCESSFULLY\n"): printf("DATA INSERTION FAILURE\n");
 				break;
 			case 2: printf("ENter the num you want to from last\n");
 				scanf("%d", &n);
-			        Slist *temp = find_mth_node_from_the_last(head, n, &res);
+			        Slist *temp = find_mth_node_from_the_last(head, n, &res);   //calling find mth and passing head , n, &res as AP
 			        if(temp)
 			       	printf("%d is the nth data in sll\n", res);
 			        break;	
@@ -80,7 +81,7 @@ void print_list(Slist *head)
 	while(head)
 	{
 		printf("%d -> ", head->data);
-		head = head->link;
+		head = head->link;   //moving to next node
 	}
 	putchar('\n');
 }
@@ -90,14 +91,14 @@ Slist *find_mth_node_from_the_last(Slist *head, int n, int *res)
 	if(head == NULL)
 		return NULL;
 	int count =0;
-	Slist *temp = head;
-	while(head != NULL)
+	Slist *temp = head;  //creating temp node and assining address of head
+	while(head != NULL)  //running loop till NULL
 	{
-		head = head->link;
-		if(count < n)
-			count++;
+		head = head->link;     //moving to next node
+		if(count < n)    //cheking if cnt less than or n or not if yes
+			count++;   //inc count
 		else
-			temp = temp->link;
+			temp = temp->link;  //if no incrementing temp add
 	}
 	if(n>count)
 		return NULL;
